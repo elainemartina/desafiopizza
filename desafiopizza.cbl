@@ -29,25 +29,39 @@
            05 nome                                 pic x(15)
                                                    value spaces.
            05 filler                               pic x(03)
-              value  " - ".
+                                                   value  " - ".
            05 diametro                             pic 9(03).
            05 filler                               pic x(03)
-              value  " - ".
+                                                   value  " - ".
            05 preco                                pic 9(03)v99.
            05 filler                               pic x(03)
-              value  " - ".
+                                                   value  " - ".
            05 preco_cm2                            pic 9(03)v99.
            05 filler                               pic x(03)
-              value  " - ".
+                                                   value  " - ".
            05 diferenca_rel                        pic 9(03)v99.
+
+       01  aux.
+           05 nome_aux                             pic x(15)
+                                                   value spaces.
+           05 filler                               pic x(03)
+                                                   value  " - ".
+           05 diametro_aux                         pic 9(03).
+           05 filler                               pic x(03)
+                                                   value  " - ".
+           05 preco_aux                            pic 9(03)v99.
+           05 filler                               pic x(03)
+                                                   value  " - ".
+           05 preco_cm2_aux                        pic 9(03)v99.
+           05 filler                               pic x(03)
+                                                   value  " - ".
+           05 diferenca_rel_aux                    pic 9(03)v99.
 
        77  delta_preco_cm2                         pic 9(03)v99.
        77  raio                                    pic 9(03)v99.
        77  area_pizza                              pic 9(03)v99.
        77  pi                                      pic 9(01)v999999
                                                    value 3,141592.
-
-       77  aux                                     pic 9(03).
        77  ind                                     pic 9(02).
        77  menu                                    pic x(01).
        77  controle                                pic x(10).
@@ -143,9 +157,10 @@
                           or nome(ind + 1) = space
 
                    if preco_cm2(ind) > preco_cm2(ind + 1) then
-                       move preco_cm2(ind + 1) to aux
-                       move preco_cm2(ind)     to preco_cm2(ind + 1)
-                       move aux                to preco_cm2(ind)
+                       move relatorio(ind + 1) to aux
+                       move relatorio(ind)     to relatorio(ind + 1)
+                       move aux                to relatorio(ind)
+
                        move "trocou"           to controle
                    end-if
 
